@@ -28,13 +28,10 @@
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
 
-        <!-- Configure your testing database here -->
-        
-        <env name="DB_CONNECTION" value="mysql"/>
-        <env name="DB_DATABASE" value="task_manager_api_testing"/>
+        <!-- Uncomment and Configure your testing database here -->
 
-        <!-- Uncomment and set the following lines if needed -->
-
+        <!-- <env name="DB_CONNECTION" value="mysql"/> -->
+        <!-- <env name="DB_DATABASE" value="your_database_name_for_testing"/> -->
         <!-- <env name="DB_USERNAME" value="your_username"/> -->
         <!-- <env name="DB_PASSWORD" value="your_password"/> -->
         <!-- <env name="DB_HOST" value="127.0.0.1"/> -->

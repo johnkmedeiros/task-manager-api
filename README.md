@@ -52,7 +52,7 @@ A simple RESTful API for managing tasks, built with Laravel.
 
 ## Database Configuration for Testing
 
-To avoid affecting your development or production database during testing, you should configure a separate database for tests. Follow the steps below:
+If you would like to avoid affecting your development or production database during testing, you should configure a separate database for tests. Follow the steps below:
 
 1. Open the `phpunit.xml` file in the root of your project.
 2. Inside the `<php>` section, update the environment variables for the test database, as shown below:
@@ -69,13 +69,10 @@ To avoid affecting your development or production database during testing, you s
        <env name="SESSION_DRIVER" value="array"/>
        <env name="TELESCOPE_ENABLED" value="false"/>
 
-        <!-- Configure your testing database here -->
+        <!-- Uncomment and Configure your testing database here -->
 
-        <env name="DB_CONNECTION" value="mysql"/>
-        <env name="DB_DATABASE" value="task_manager_api_testing"/>
-
-        <!-- Uncomment and set the following lines if needed -->
-
+        <!-- <env name="DB_CONNECTION" value="mysql"/> -->
+        <!-- <env name="DB_DATABASE" value="task_manager_api_testing"/> -->
         <!-- <env name="DB_USERNAME" value="your_username"/> -->
         <!-- <env name="DB_PASSWORD" value="your_password"/> -->
         <!-- <env name="DB_HOST" value="127.0.0.1"/> -->
@@ -175,5 +172,141 @@ vendor/bin/phpunit
   }
   ```
 
-### Additional Endpoints
-WIP
+### Task CRUD
+
+#### Get Tasks
+- **Endpoint**: `GET /api/tasks`
+- **Headers**:
+  ```
+  Authorization: Bearer your_token_here
+  ```
+- **Response**:
+  - **200 OK**
+  ```json
+  {
+      "data": [
+          {
+              "id": 1,
+              "title": "Task 1",
+              "description": "Description of task 1",
+              "status": "pending",
+              "priority": "high",
+              "due_date": "2024-10-31",
+              "reminder_sent": false,
+              "auto_complete_on_due_date": false,
+              "created_at": "2024-10-01T00:00:00Z",
+              "updated_at": "2024-10-01T00:00:00Z"
+          },
+          ...
+      ]
+  }
+  ```
+
+#### Show Task
+- **Endpoint**: `GET /api/tasks/{taskId}`
+- **Headers**:
+  ```
+  Authorization: Bearer your_token_here
+  ```
+- **Parameters**:
+  - `taskId`: ID of the task to be returned.
+- **Response**:
+  - **200 OK**
+  ```json
+  {
+      "data": {
+          "id": 1,
+          "title": "Task 1",
+          "description": "Description of task 1",
+          "status": "pending",
+          "priority": "high",
+          "due_date": "2024-10-31",
+          "reminder_sent": false,
+          "auto_complete_on_due_date": false,
+          "created_at": "2024-10-01T00:00:00Z",
+          "updated_at": "2024-10-01T00:00:00Z"
+      }
+  }
+  ```
+
+#### Create Task
+- **Endpoint**: `POST /api/tasks`
+- **Headers**:
+  ```
+  Authorization: Bearer your_token_here
+  ```
+- **Request Body**:
+  ```json
+  {
+      "title": "New Task",
+      "description": "Description of the new task",
+      "priority": "medium",
+      "due_date": "2024-11-15",
+      "auto_complete_on_due_date": false
+  }
+  ```
+- **Response**:
+  - **201 Created**
+  ```json
+  {
+      "data": {
+          "id": 2,
+          "title": "New Task",
+          "description": "Description of the new task",
+          "status": "pending",
+          "priority": "medium",
+          "due_date": "2024-11-15",
+          "reminder_sent": false,
+          "auto_complete_on_due_date": false,
+          "created_at": "2024-10-01T00:00:00Z",
+          "updated_at": "2024-10-01T00:00:00Z"
+      }
+  }
+  ```
+
+#### Update Task
+- **Endpoint**: `PUT /api/tasks/{taskId}`
+- **Headers**:
+  ```
+  Authorization: Bearer your_token_here
+  ```
+- **Request Body**:
+  ```json
+  {
+      "title": "Updated Task",
+      "description": "Updated description of the task",
+      "priority": "low",
+      "due_date": "2024-12-01",
+      "auto_complete_on_due_date": true
+  }
+  ```
+- **Response**:
+  - **200 OK**
+  ```json
+  {
+      "data": {
+          "id": 1,
+          "title": "Updated Task",
+          "description": "Updated description of the task",
+          "status": "pending",
+          "priority": "low",
+          "due_date": "2024-12-01",
+          "reminder_sent": false,
+          "auto_complete_on_due_date": true,
+          "created_at": "2024-10-01T00:00:00Z",
+          "updated_at": "2024-10-01T00:00:00Z"
+      }
+  }
+  ```
+
+#### Delete Task
+- **Endpoint**: `DELETE /api/tasks/{taskId}`
+- **Headers**:
+  ```
+  Authorization: Bearer your_token_here
+  ```
+- **Response**:
+  - **200 OK**
+  ```json
+  {}
+  ```
