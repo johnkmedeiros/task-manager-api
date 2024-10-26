@@ -174,13 +174,6 @@ vendor/bin/phpunit
 
 ### Task CRUD
 
-#### Authentication
-- **Endpoint**: All CRUD routes require authentication.
-- **Headers**:
-  ```
-  Authorization: Bearer your_token_here
-  ```
-
 #### Get Tasks
 - **Endpoint**: `GET /api/tasks`
 - **Headers**:
