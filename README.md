@@ -1,6 +1,12 @@
 # Task Manager API
 
-A simple RESTful API for managing tasks, built with Laravel.
+A simple RESTful API for managing tasks, built with Laravel. The architecture follows these key components:
+
+- **Controllers**: Handle HTTP requests, interact with services, and return responses.
+- **Request Validators**: Validate incoming data to ensure it meets the required rules.
+- **DTOs (Data Transfer Objects)**: Transfer data between layers, minimizing exposure to internal models.
+- **Services**: Contain business logic and interact with models or external systems.
+- **Resources**: Format and structure data into the final JSON response.
 
 ## Features
 
